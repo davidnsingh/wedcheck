@@ -1,42 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;600;700&family=Dancing+Script:wght@400;700&display=swap');
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  text-align: center;
+  width: 100vw;
+}
+
+:root {
+  --bg: #f9f7f3; /* pastel white */
+  --text: #111827; /* dark text for contrast */
+  --accent: #6b4f3a; /* warm vintage accent */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Emphasize left/right nav items with a vintage serif */
+.nav-left,
+.nav-right {
+  font-family: 'Cormorant Garamond', 'Cinzel', serif;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+/* Make the date (right) slightly larger than original */
+.nav-right {
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* Center name: slightly larger readable cursive, only a bit bigger than the date */
+.nav-center {
+  font-family: 'Dancing Script', 'Cormorant Garamond', serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  color: var(--accent);
+  font-weight: 500;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  transform: translateY(1px);
+}
+
+
+.totalscreen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(1rem, 6vw, 5rem);
+  height: 10vh;
+  gap: 1rem;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  flex: 1;
+}
+
+.nav-left {
+  text-align: left;
+}
+.nav-center {
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.nav-right {
+  text-align: right;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.main {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  min-height: 0; /* allow children to fill the height */
+}
+
+.main-left,
+.main-right {
+  flex: 1;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Preferentially show left/right edges when possible */
+.main-left { background-position: center left; }
+.main-right { background-position: center right; }
+
+/* Stack on small screens */
+@media (max-width: 640px) {
+  .main {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  .main-left,
+  .main-right {
+    width: 100%;
+    height: 50%;
+    background-position: center;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+.footer {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', 'Cinzel', serif;
+  color: rgba(0,0,0,0.7);
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  letter-spacing: 0.08em;
+  text-transform: capitalize;
+  border-top: 1px solid rgba(0,0,0,0.04);
+  background: linear-gradient(transparent, rgba(255,255,255,0.4));
+}@media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
