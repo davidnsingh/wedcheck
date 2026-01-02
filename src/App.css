@@ -14,7 +14,8 @@
   --accent: #6b4f3a; /* warm vintage accent */
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   background-color: var(--bg) !important;
@@ -31,7 +32,7 @@ html, body {
   font-weight: 600;
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   letter-spacing: 0.03em;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 /* Make the date (right) slightly larger than original */
@@ -48,10 +49,9 @@ html, body {
   font-size: clamp(1.35rem, 2.8vw, 1.9rem);
   color: var(--accent);
   font-weight: 500;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
   transform: translateY(1px);
 }
-
 
 .totalscreen {
   display: flex;
@@ -102,19 +102,80 @@ html, body {
 }
 
 /* Preferentially show left/right edges when possible */
-.main-left { background-position: center left; }
-.main-right { background-position: center right; }
+.main-left {
+  background-position: center left;
+}
+.main-right {
+  background-position: center right;
+}
 
-/* Stack on small screens */
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 2.5rem;
+  }
+  .nav-left,
+  .nav-right {
+    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  }
+  .nav-center {
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  }
+}
+
+/* Stack and simplify on small phones */
 @media (max-width: 640px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    height: auto;
+    gap: 0.25rem;
+  }
+
+  /* Name on top, city and date on one row with space between */
+  .nav-center {
+    order: -1;
+    margin-bottom: 0.125rem;
+  }
+
+  .nav-row {
+    order: 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-left,
+  .nav-right {
+    order: 0;
+    flex: 1 1 auto;
+    width: auto;
+    font-size: 0.95rem;
+  }
+
+  .nav-left { text-align: left; }
+  .nav-right { text-align: right; font-size: 1.05rem; font-weight: 700; }
+
+  /* Show only one image (left) and hide the right image on phones */
   .main {
     flex-direction: column;
   }
-  .main-left,
-  .main-right {
+  .main-left {
+    display: block;
     width: 100%;
-    height: 50%;
+    height: 60vh;
     background-position: center;
+  }
+  .main-right {
+    display: none;
+  }
+
+  .footer {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
   }
 }
 
@@ -124,13 +185,14 @@ html, body {
   align-items: center;
   justify-content: center;
   font-family: 'Cormorant Garamond', 'Cinzel', serif;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
   letter-spacing: 0.08em;
   text-transform: capitalize;
-  border-top: 1px solid rgba(0,0,0,0.04);
-  background: linear-gradient(transparent, rgba(255,255,255,0.4));
-}@media (prefers-reduced-motion: no-preference) {
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.4));
+}
+@media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
